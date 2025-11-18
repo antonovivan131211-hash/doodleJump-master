@@ -4,20 +4,15 @@ import static io.github.some_example_name.GameSettings.POSITION_ITERATIONS;
 import static io.github.some_example_name.GameSettings.STEP_TIME;
 import static io.github.some_example_name.GameSettings.VELOCITY_ITERATIONS;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2D;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.ScreenUtils;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class MyGdxGame extends Game {
     public SpriteBatch batch;
     public OrthographicCamera camera;
@@ -26,6 +21,7 @@ public class MyGdxGame extends Game {
     float accumulator = 0;
 
     public GameScreen gameScreen;
+    public MenuScreen menuScreen;
 
     @Override
     public void create() {
@@ -35,14 +31,26 @@ public class MyGdxGame extends Game {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, GameSettings.SCREEN_WIDTH, GameSettings.SCREEN_HEIGHT);
 
+
+        menuScreen = new MenuScreen(this);
         gameScreen = new GameScreen(this);
 
-        setScreen(gameScreen);
+
+        setScreen(menuScreen);
     }
+
     @Override
     public void dispose() {
         batch.dispose();
+        if (menuScreen != null) {
+            menuScreen.dispose();
+        }
+        if (gameScreen != null) {
+            gameScreen.dispose();
+        }
+        world.dispose();
     }
+
     public void stepWorld() {
         float delta = Gdx.graphics.getDeltaTime();
         accumulator += delta;
