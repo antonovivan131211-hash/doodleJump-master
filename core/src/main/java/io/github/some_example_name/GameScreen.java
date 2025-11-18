@@ -63,7 +63,7 @@ public class GameScreen extends ScreenAdapter {
 
         for (int i = 0; i < plates.size(); i++) {
             PlateObject plate = plates.get(i);
-            // Используем plate.height напрямую, так как getHeight() был удален из GameObject
+
             if (plate.getY() < myGdxGame.camera.position.y - myGdxGame.camera.viewportHeight / 2 - plate.height) {
                 plate.dispose();
                 plates.remove(i);
