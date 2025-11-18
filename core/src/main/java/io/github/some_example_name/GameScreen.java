@@ -14,7 +14,8 @@ public class GameScreen extends ScreenAdapter {
     MyGdxGame myGdxGame;
     int r = 0;
     Batch batch;
-    boolean gyroscopeAvail = Gdx.input.isPeripheralAvailable(Input.Peripheral.Gyroscope);
+    boolean gyroscopeAvail;
+
     DoodleObject doodleObject;
     ArrayList<PlateObject> plates;
     float nextPlateY;
@@ -23,6 +24,7 @@ public class GameScreen extends ScreenAdapter {
     public GameScreen(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         batch = myGdxGame.batch;
+
         doodleObject = new DoodleObject(GameResorses.DOODLE_PATH, 100f, 150f, 301f / 2f, 453f / 2f, GameSettings.DOODLE_BIT, myGdxGame.world);
 
         plates = new ArrayList<>();
@@ -32,6 +34,8 @@ public class GameScreen extends ScreenAdapter {
         while (nextPlateY < screenHeight * 2) {
             spawnNewPlate();
         }
+
+        gyroscopeAvail = Gdx.input.isPeripheralAvailable(Input.Peripheral.Gyroscope);
     }
 
     private void spawnNewPlate() {
@@ -56,6 +60,11 @@ public class GameScreen extends ScreenAdapter {
         myGdxGame.stepWorld();
         doodleObject.update(delta);
 
+        if (gyroscopeAvail) {
+            float gyroscopeX = Gdx.input.getGyroscopeX();
+            doodleObject.moveByGyroscope(gyroscopeX, delta);
+        }
+
         float spawnThreshold = myGdxGame.camera.position.y + myGdxGame.camera.viewportHeight / 2;
         while (nextPlateY < spawnThreshold + PLATE_SPAWN_INTERVAL_Y * 2) {
             spawnNewPlate();
@@ -63,7 +72,6 @@ public class GameScreen extends ScreenAdapter {
 
         for (int i = 0; i < plates.size(); i++) {
             PlateObject plate = plates.get(i);
-
             if (plate.getY() < myGdxGame.camera.position.y - myGdxGame.camera.viewportHeight / 2 - plate.height) {
                 plate.dispose();
                 plates.remove(i);
@@ -71,6 +79,10 @@ public class GameScreen extends ScreenAdapter {
             } else {
                 plate.update(delta);
             }
+        }
+
+        if (doodleObject.getY() > myGdxGame.camera.position.y - myGdxGame.camera.viewportHeight / 4) {
+            myGdxGame.camera.position.y = doodleObject.getY() + myGdxGame.camera.viewportHeight / 4;
         }
 
         draw();
@@ -82,7 +94,6 @@ public class GameScreen extends ScreenAdapter {
         ScreenUtils.clear(Color.CLEAR);
 
         handleInput();
-        doodleObject.jump();
         r++;
 
         batch.begin();
@@ -96,12 +107,12 @@ public class GameScreen extends ScreenAdapter {
     }
 
     private void handleInput() {
-        if (Gdx.input.isPeripheralAvailable(Input.Peripheral.Gyroscope)) {
+        if (gyroscopeAvail) {
             if (r >= 100) {
                 String gyroX = String.format("%.2f", Gdx.input.getGyroscopeX());
                 String gyroY = String.format("%.2f", Gdx.input.getGyroscopeY());
                 String gyroZ = String.format("%.2f", Gdx.input.getGyroscopeZ());
-                Gdx.app.log("кординаты", "x - " + gyroX + "   y- " + gyroY + "   z - " + gyroZ);
+                Gdx.app.log("Gyroscope", "x - " + gyroX + "   y- " + gyroY + "   z - " + gyroZ);
                 r -= 100;
             }
         }
