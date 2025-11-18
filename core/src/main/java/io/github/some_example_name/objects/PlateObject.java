@@ -1,31 +1,30 @@
 package io.github.some_example_name.objects;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import java.util.Random;
 
 public class PlateObject extends GameObject {
-    private Texture texture;
-    private float x, y;
-    private float width, height;
+    private static Random random = new Random();
 
-    public PlateObject(float x, float y, float width, float height, short cBits, World world) {
-        super("i1.png", (int)x, (int)y, (int)width, (int)height, cBits, world);
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        texture = new Texture(Gdx.files.internal("i1.png"));
+    public PlateObject(float y, float width, float height, short cBits, World world, float screenWidth) {
 
-        if (super.body != null) {
-            super.body.setType(BodyDef.BodyType.StaticBody);
-        }
+        super("i1.png", random.nextFloat() * (screenWidth - width), y, width, height, cBits, world, BodyDef.BodyType.StaticBody);
     }
 
     @Override
     public void draw(SpriteBatch batch) {
         super.draw(batch);
+    }
+
+    @Override
+    public void dispose() {
+        super.dispose();
+    }
+
+    @Override
+    public void update(float delta) {
+        super.update(delta);
     }
 }
