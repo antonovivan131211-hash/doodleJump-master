@@ -156,24 +156,24 @@ public class GameScreen extends ScreenAdapter {
             achievementManager.unlockAchievement("welcome");
             firstLaunch = false;
             achievementShown = true;
-            Gdx.app.log("ACHIEVEMENT", "Welcome achievement unlocked");
+            Gdx.app.log("ACHIEVEMENT", "Добро пожаловать!");
         }
 
         float doodleY = doodleObject.getY();
 
         if (doodleY > 100f && !achievementManager.isAchievementUnlocked("first_jump")) {
             achievementManager.unlockAchievement("first_jump");
-            Gdx.app.log("ACHIEVEMENT", "First jump achievement unlocked");
+            Gdx.app.log("ACHIEVEMENT", "Первый прыжок, разблокирован!");
         }
 
         if (doodleY > 1000f && !achievementManager.isAchievementUnlocked("height_100")) {
             achievementManager.unlockAchievement("height_100");
-            Gdx.app.log("ACHIEVEMENT", "Height 100 achievement unlocked");
+            Gdx.app.log("ACHIEVEMENT", "Вверх 100, разблокирован");
         }
 
         if (doodleY > 5000f && !achievementManager.isAchievementUnlocked("height_500")) {
             achievementManager.unlockAchievement("height_500");
-            Gdx.app.log("ACHIEVEMENT", "Height 500 achievement unlocked");
+            Gdx.app.log("ACHIEVEMENT", "Вверх 500, разблокирован!");
         }
     }
 

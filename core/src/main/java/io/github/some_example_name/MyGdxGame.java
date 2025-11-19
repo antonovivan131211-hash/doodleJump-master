@@ -62,7 +62,7 @@ public class MyGdxGame extends Game {
     private void createFonts() {
         try {
 
-            FileHandle fontFile = Gdx.files.internal("fonts/arial.ttf");
+            FileHandle fontFile = Gdx.files.internal("font/Montserrat-VariableFont_wght.ttf");
 
             if (fontFile.exists()) {
                 FreeTypeFontGenerator generator = new FreeTypeFontGenerator(fontFile);

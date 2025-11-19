@@ -12,7 +12,7 @@ public class DoodleObject extends GameObject {
 
     private static final float GYRO_SENSITIVITY = 150f;
     private static final float JUMP_FORCE = 15f;
-    private static final float MOVE_FORCE = 8f;
+    private static final float MOVE_FORCE = 30f;
     private boolean isOnGround = false;
     private boolean canJump = false;
     private float jumpCooldown = 0f;

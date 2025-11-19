@@ -8,6 +8,6 @@ public class GameResorses {
     public static final String BLACKOUT_TOP_IMG_PATH = "blackout_top.png";
     public static final String PAUSE_IMG_PATH = "pause_icon.png";
     public static final String PAUSE_SCREEN_IMG_PATH = "blackout_full.png";
-    public static final String FONT_PATH = "Montserrat-Bold.ttf";
+    public static final String FONT_PATH = "font/Montserrat-VariableFont_wght.ttf";
     public static final String BUTTON_SHORT_BG_IMG_PATH = "button_background_short.png";
 }

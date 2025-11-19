@@ -30,10 +30,10 @@ public class AchievementManager {
     }
 
     private void initializeAchievements() {
-        addAchievement(new Achievement("welcome", "Welcome!", "First time playing"));
-        addAchievement(new Achievement("first_jump", "First Jump", "Make first jump"));
-        addAchievement(new Achievement("height_100", "Height 100", "Reach height 100"));
-        addAchievement(new Achievement("height_500", "Height 500", "Reach height 500"));
+        addAchievement(new Achievement("welcome", "Добро пожаловать!", "First time playing"));
+        addAchievement(new Achievement("first_jump", "Первый прыжок", "Make first jump"));
+        addAchievement(new Achievement("height_100", "Вверх 100", "Reach height 100"));
+        addAchievement(new Achievement("height_500", "Вверх 500", "Reach height 500"));
     }
 
     public void addAchievement(Achievement achievement) {
