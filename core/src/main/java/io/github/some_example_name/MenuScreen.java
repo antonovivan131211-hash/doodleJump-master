@@ -36,7 +36,7 @@ public class MenuScreen extends ScreenAdapter {
         skin = new Skin();
         font = new BitmapFont();
 
-        // Масштаб шрифта
+
         font.getData().setScale(FONT_SCALE);
 
         TextButton.TextButtonStyle buttonStyle = new TextButton.TextButtonStyle();
@@ -44,7 +44,7 @@ public class MenuScreen extends ScreenAdapter {
         buttonStyle.fontColor = Color.WHITE;
         skin.add("default", buttonStyle);
 
-        // Кнопка Start
+
         TextButton startButton = new TextButton("Start", skin);
         startButton.setPosition(
             Gdx.graphics.getWidth() / 2f - BUTTON_WIDTH / 2f,
@@ -59,7 +59,7 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
 
-        // Кнопка Exit
+
         TextButton exitButton = new TextButton("Exit", skin);
         exitButton.setPosition(
             Gdx.graphics.getWidth() / 2f - BUTTON_WIDTH / 2f,
